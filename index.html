@@ -1,15 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario Glassmorphism</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .glass-form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 300px;
+    }
+
+    .glass-form input[type="file"] {
+      margin-bottom: 20px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .glass-form input[type="submit"] {
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .glass-form input[type="submit"]:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    ::file-selector-button {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    ::file-selector-button:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+  </style>
 </head>
 <body>
-    <form method="POST" action="https://mario0909.app.n8n.cloud/webhook/analyze-motorcycle-event" enctype="multipart/form-data">
-        <input type="file" name="data" accept=".jpg, .jpeg, .png" required>
-        <input type="submit" value="Submit"> 
-    </form>
+  <form class="glass-form" method="POST" action="https://mario0909.app.n8n.cloud/webhook/analyze-motorcycle-event" enctype="multipart/form-data">
+    <h2 style="color: white; margin-bottom: 20px;">Subir Imagen</h2>
+    <input type="file" name="data" accept=".jpg, .jpeg, .png" required />
+    <input type="submit" value="Enviar" />
+  </form>
 </body>
 </html>
-
