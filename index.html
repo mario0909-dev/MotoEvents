@@ -65,13 +65,53 @@
     ::file-selector-button:hover {
       background: rgba(255, 255, 255, 0.4);
     }
+
+    .message {
+      margin-top: 20px;
+      color: #bdf2bd;
+      font-weight: bold;
+      display: none;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <form class="glass-form" method="POST" action="https://mario0909.app.n8n.cloud/webhook/analyze-motorcycle-event" enctype="multipart/form-data">
+  <form class="glass-form" id="uploadForm" enctype="multipart/form-data">
     <h2 style="color: white; margin-bottom: 20px;">Subir Imagen</h2>
     <input type="file" name="data" accept=".jpg, .jpeg, .png" required />
     <input type="submit" value="Enviar" />
+    <div class="message" id="successMessage">¡Imagen enviada correctamente!</div>
   </form>
+
+  <script>
+    const form = document.getElementById("uploadForm");
+    const message = document.getElementById("successMessage");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Evita recarga
+
+      const formData = new FormData(form);
+
+      fetch("https://mario0909.app.n8n.cloud/webhook/analyze-motorcycle-event", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          message.style.display = "block";
+          form.reset();
+        } else {
+          message.textContent = "Error al enviar la imagen.";
+          message.style.color = "#ffb3b3";
+          message.style.display = "block";
+        }
+      })
+      .catch(() => {
+        message.textContent = "Error de conexión.";
+        message.style.color = "#ffb3b3";
+        message.style.display = "block";
+      });
+    });
+  </script>
 </body>
 </html>
